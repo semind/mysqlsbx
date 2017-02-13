@@ -10,3 +10,5 @@ RUN wget ftp://ftp.iij.ad.jp/pub/db/mysql/Downloads/MySQL-5.7/mysql-5.7.17.tar.g
 WORKDIR /usr/local/src/mysql-5.7.17
 RUN cmake -DDOWNLOAD_BOOST=1 -DWITH_BOOST=/tmp/boost
 RUN make install
+
+ENV PATH $PATH:/usr/local/mysql/bin
