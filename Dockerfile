@@ -12,3 +12,16 @@ RUN cmake -DDOWNLOAD_BOOST=1 -DWITH_BOOST=/tmp/boost
 RUN make install
 
 ENV PATH $PATH:/usr/local/mysql/bin
+
+WORKDIR /usr/local/mysql
+RUN mkdir data && mkdir tmp
+
+COPY my.cnf /etc
+
+RUN useradd mysql
+RUN chown -R mysql:mysql /usr/local/mysql
+
+USER mysql
+RUN /usr/local/mysql/bin/mysqld --install
+
+EXPOSE 3306
